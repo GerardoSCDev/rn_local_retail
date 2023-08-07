@@ -5,6 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 // Import local
 import { InventoryView } from '@modules/inventory/views/InventoryView'
 import { TabIcon } from './TabIcon'
+import { SalesView } from '@modules/sales/views/SalesView'
+import { SummaryView } from '@modules/summary/views/SummaryView'
 
 
 const Tab = createBottomTabNavigator()
@@ -12,7 +14,7 @@ const Tab = createBottomTabNavigator()
 export const TabNavigator = () => {
     return (
         <Tab.Navigator
-
+            initialRouteName='Resumen'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused }) => {
                     return <TabIcon route={route} focused={focused} />
@@ -29,7 +31,8 @@ export const TabNavigator = () => {
             })}
         >
             <Tab.Screen name='Inventario' component={InventoryView} />
-            <Tab.Screen name='Campana' component={InventoryView} />
+            <Tab.Screen name='Resumen' component={SummaryView} />
+            <Tab.Screen name='Ventas' component={SalesView} />
         </Tab.Navigator>
     )
 }

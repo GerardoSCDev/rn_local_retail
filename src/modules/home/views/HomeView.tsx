@@ -1,8 +1,12 @@
+// Import libraries
 import React from 'react'
-import { View, Text } from 'react-native'
 
-export const HomeView = () => {
+// Import local
+import RootNavigator from '../components/RootNavigator'
+
+const HomeView = () => {
     return (
-        <View><Text>Hola</Text></View>
+        <RootNavigator />
     )
 }
+export default HomeView

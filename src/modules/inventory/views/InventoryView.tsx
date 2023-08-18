@@ -1,43 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import {
     View,
-    Text,
-    Image,
     SafeAreaView,
     FlatList,
-    TouchableHighlight
 } from 'react-native'
-import InventoryStyles from '../styles/Inventory.styles'
-
-
-
-const GridItemProduct = ({ nombre, numberStock }: IProduct) => {
-
-    const { containerItem, imageItem, titleItem, subtitleItem } = InventoryStyles
-
-    return (
-        <View
-            style={containerItem}>
-            <TouchableHighlight onPress={() => { console.log(`-> ${nombre} ${numberStock}`) }}>
-                <View>
-                    <Image
-                        style={imageItem}
-                        source={{
-                            uri: 'https://reactnative.dev/img/tiny_logo.png',
-                        }}
-                    />
-                    <Text style={titleItem}>{nombre}</Text>
-                    <Text style={subtitleItem}>En existencia: {numberStock}</Text>
-                </View>
-            </TouchableHighlight>
-        </View>
-    )
-}
-
+import { GridItemProduct } from '../components/GridItemProduct'
+import { IProduct } from '../interfaces/Interfaces'
 
 export const InventoryView = () => {
 
-    const [dataProducts, setDataProducts] = useState<IProduct[]>([])
+    const [dataProducts, setDataProducts] = useState<IProduct[]>(ProductsMock)
 
     useEffect(() => {
         setDataProducts(dataProducts)
@@ -47,7 +19,7 @@ export const InventoryView = () => {
         <View >
             <SafeAreaView >
                 <FlatList
-                    data={ProductsMock}
+                    data={dataProducts}
                     renderItem={({ item }) => <GridItemProduct {...item} />}
                     numColumns={3}
                 />
@@ -101,24 +73,5 @@ const ProductsMock: IProduct[] = [
         providers: { nombre: '' }
     },
 ]
-
-
-interface IProduct {
-
-    nombre: string
-    barCode: string
-    numberStock: number
-    batches: IProductBatch[]
-    providers: IProductProvider
-}
-
-interface IProductBatch {
-    priceBuy: number
-    priceSell: number
-}
-
-interface IProductProvider {
-    nombre: string
-}
 
 

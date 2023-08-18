@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     View,
     Text,
@@ -7,33 +7,30 @@ import {
     FlatList,
     TouchableHighlight
 } from 'react-native'
+import InventoryStyles from '../styles/Inventory.styles'
+
+
 
 const GridItemProduct = ({ nombre, numberStock }: IProduct) => {
+
+    const { containerItem, imageItem, titleItem, subtitleItem } = InventoryStyles
+
     return (
-        <TouchableHighlight onPress={() => { console.log(`-> ${nombre} ${numberStock}`) }}>
-            <View
-                style={
-                    {
-                        flex: 1,
-                        height: 150,
-                        backgroundColor: 'black',
-                        borderWidth: 1,
-                        borderColor: 'red'
-                    }
-
-                }>
-
-                <Image
-                    style={{ justifyContent: 'center', alignItems: 'center', height: 100 }}
-                    source={{
-                        uri: 'https://reactnative.dev/img/tiny_logo.png',
-                    }}
-                />
-                <Text style={{ color: 'red' }}>{nombre}</Text>
-                <Text style={{ color: 'red' }}>En existencia: {numberStock}</Text>
-
-            </View>
-        </TouchableHighlight>
+        <View
+            style={containerItem}>
+            <TouchableHighlight onPress={() => { console.log(`-> ${nombre} ${numberStock}`) }}>
+                <View>
+                    <Image
+                        style={imageItem}
+                        source={{
+                            uri: 'https://reactnative.dev/img/tiny_logo.png',
+                        }}
+                    />
+                    <Text style={titleItem}>{nombre}</Text>
+                    <Text style={subtitleItem}>En existencia: {numberStock}</Text>
+                </View>
+            </TouchableHighlight>
+        </View>
     )
 }
 
@@ -42,35 +39,21 @@ export const InventoryView = () => {
 
     const [dataProducts, setDataProducts] = useState<IProduct[]>([])
 
+    useEffect(() => {
+        setDataProducts(dataProducts)
+    }, [])
+
     return (
         <View >
             <SafeAreaView >
                 <FlatList
                     data={ProductsMock}
                     renderItem={({ item }) => <GridItemProduct {...item} />}
-                    numColumns={2}
+                    numColumns={3}
                 />
             </SafeAreaView>
         </View>
     )
-}
-
-interface IProduct {
-
-    nombre: string
-    barCode: string
-    numberStock: number
-    batches: IProductBatch[]
-    providers: IProductProvider
-}
-
-interface IProductBatch {
-    priceBuy: number
-    priceSell: number
-}
-
-interface IProductProvider {
-    nombre: string
 }
 
 
@@ -118,3 +101,24 @@ const ProductsMock: IProduct[] = [
         providers: { nombre: '' }
     },
 ]
+
+
+interface IProduct {
+
+    nombre: string
+    barCode: string
+    numberStock: number
+    batches: IProductBatch[]
+    providers: IProductProvider
+}
+
+interface IProductBatch {
+    priceBuy: number
+    priceSell: number
+}
+
+interface IProductProvider {
+    nombre: string
+}
+
+

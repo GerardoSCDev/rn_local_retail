@@ -20,8 +20,8 @@ export const InventoryView = () => {
             <SafeAreaView >
                 <FlatList
                     data={dataProducts}
-                    renderItem={({ item }) => <GridItemProduct {...item} />}
                     numColumns={3}
+                    renderItem={({ item }) => <GridItemProduct {...item} />}
                 />
             </SafeAreaView>
         </View>

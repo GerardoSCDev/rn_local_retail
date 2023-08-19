@@ -1,6 +1,7 @@
 // Import libraries
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { Button } from 'react-native';
 
 // Import local
 import { InventoryView } from '@modules/inventory/views/InventoryView'
@@ -31,9 +32,14 @@ export const TabNavigator = () => {
                 }
             })}
         >
-            <Tab.Screen name='Inventario' component={InventoryView} />
+            <Tab.Screen name='Inventario' component={InventoryView}
+                options={({ navigation, route }) => ({
+                    headerRight: () => (<Button title="Agregar" />)
+                })}
+            />
             <Tab.Screen name='Resumen' component={SummaryView} />
             <Tab.Screen name='Ventas' component={SalesView} />
+
         </Tab.Navigator>
     )
 }

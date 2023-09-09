@@ -7,7 +7,11 @@ import {
 import { GridItemProduct } from '../components/GridItemProduct'
 import { IProduct } from '../interfaces/Interfaces'
 
-export const InventoryView = () => {
+interface IInventoryView {
+    navigation: any
+}
+
+export const InventoryView = ({ navigation }: IInventoryView) => {
 
     const [dataProducts, setDataProducts] = useState<IProduct[]>(ProductsMock)
 

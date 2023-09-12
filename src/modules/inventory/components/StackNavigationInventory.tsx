@@ -9,18 +9,26 @@ const StackNavigator = createNativeStackNavigator()
 
 export const StackNavigationInventory = ({ }) => {
     return (
-        <StackNavigator.Navigator initialRouteName='InventarioScreen'>
+        <StackNavigator.Navigator
+            initialRouteName='InventarioScreen'
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#112731',
+                },
+                headerTintColor: '#FFF'
+            }}>
             <StackNavigator.Screen
                 name='InventarioScreen'
                 component={InventoryView}
-                options={({ navigation, route }) => ({
+                options={({ navigation }) => ({
                     headerRight: () => (
                         <MaterialIcons
                             name="add-circle-outline"
                             size={30}
                             color='#7A8EA1'
                             onPress={() => { navigation.push('NewComponentForm') }} />
-                    )
+                    ),
+                    title: 'Inventario'
                 })}
             />
             <StackNavigator.Screen name='NewComponentForm' component={NewProductsForm} />

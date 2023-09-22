@@ -1,7 +1,7 @@
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { InventoryView } from "../views/InventoryView";
-import { NewProductsForm } from "../views/NewProductsForm";
+import { NewProductsView } from "../views/NewProductsView";
 import { MaterialIcons } from '@expo/vector-icons'
 import { InventoryStrings } from "../strings/InventoryStrings";
 
@@ -37,7 +37,7 @@ export const StackNavigationInventory = ({ }) => {
             />
             <StackNavigator.Screen
                 name='NewComponentForm'
-                component={NewProductsForm}
+                component={NewProductsView}
                 options={{
                     title: navBar.newProductTitle
                 }}

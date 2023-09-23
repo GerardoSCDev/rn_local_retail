@@ -33,6 +33,36 @@ const NewProductsStyles = StyleSheet.create({
         elevation: 2.5,
         shadowColor: '#000',
     },
+    containerImageProduct: {
+        justifyContent: 'center'
+    },
+    imageProduct: {
+        height: 50,
+        width: 50
+    },
+    emptyProductView: {
+        flex: 1,
+        marginBottom: 45,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: 50
+    },
+    emptyContinaerImage: {
+        backgroundColor: '#DCDCDC',
+        padding: 30,
+        borderRadius: 130
+    },
+    emptyImage: {
+        maxHeight: 200,
+        maxWidth: 200
+    },
+    emptyMessageText: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'center',
+        marginTop: 15,
+        color: '#7A8EA1'
+    }
 })
 
 export default NewProductsStyles

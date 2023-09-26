@@ -1,9 +1,9 @@
 
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { InventoryView } from "../views/InventoryView";
 import { NewProductsView } from "../views/NewProductsView";
-import { MaterialIcons } from '@expo/vector-icons'
-import { InventoryStrings } from "../strings/InventoryStrings";
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
+import { InventoryStrings } from "../strings/InventoryStrings"
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -38,9 +38,16 @@ export const StackNavigationInventory = ({ }) => {
             <StackNavigator.Screen
                 name='NewComponentForm'
                 component={NewProductsView}
-                options={{
-                    title: navBar.newProductTitle
-                }}
+                options={({ navigation }) => ({
+                    title: navBar.newProductTitle,
+                    headerRight: () => (
+                        <MaterialCommunityIcons
+                            name="barcode-scan"
+                            size={30}
+                            color='#7A8EA1'
+                            onPress={() => { console.log('Show scan') }} />
+                    ),
+                })}
             />
         </StackNavigator.Navigator>
     )

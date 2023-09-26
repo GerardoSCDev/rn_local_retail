@@ -4,6 +4,7 @@ const NewProductsStyles = StyleSheet.create({
     containerView: {
         flex: 1,
         padding: 10,
+        marginBottom: 50
     },
     containerCell: {
         height: 60,
@@ -15,7 +16,7 @@ const NewProductsStyles = StyleSheet.create({
     card: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        columnGap: 15,
+        columnGap: 20,
         backgroundColor: 'white',
         borderRadius: 8,
         paddingVertical: 20,
@@ -62,6 +63,25 @@ const NewProductsStyles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 15,
         color: '#7A8EA1'
+    },
+    cellOptionsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    cellDeleteContainer: {
+        marginRight: 5,
+        backgroundColor: '#112731',
+        width: 80,
+        height: 55,
+        borderRadius: 8
+    },
+    cellDeleteText: {
+        color: 'white',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        height: '100%'
     }
 })
 

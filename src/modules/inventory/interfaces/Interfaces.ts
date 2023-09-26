@@ -1,6 +1,6 @@
 export interface IGroupProductsBarcode {
     barCode: string
-    products?: IProduct[]
+    products: IProduct[]
 }
 
 export interface IProduct {

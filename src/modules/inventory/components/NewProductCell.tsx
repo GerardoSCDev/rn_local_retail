@@ -1,10 +1,7 @@
-import {
-    Image,
-    Text,
-    View,
-} from 'react-native'
+import { Image, Text, View } from 'react-native'
 
 import NewProductsStyles from '../styles/NewProductsStyles'
+import { IProduct } from '../interfaces/Interfaces'
 
 const {
     card,
@@ -13,20 +10,28 @@ const {
     imageProduct
 } = NewProductsStyles
 
-export const NewProductCell = () => {
+interface INewProductCellProps {
+    product: IProduct
+}
+
+export const NewProductCell = ({
+    product
+}: INewProductCellProps) => {
+
+    const { barCode, nombre, numberStock } = product
+
     return (
         <View style={[card, elevation]}>
             <View style={containerImageProduct}>
-
                 <Image
                     style={imageProduct}
                     source={require('../../../../assets/inventory/empty-products.png')}
                 />
             </View>
             <View>
-                <Text>Producto: Laptop Mac Book pro</Text>
-                <Text>Codigo: 1234567890</Text>
-                <Text>Cantidad: 20</Text>
+                <Text>Producto: {nombre}</Text>
+                <Text>Codigo: {barCode}</Text>
+                <Text>Cantidad: {numberStock}</Text>
             </View>
         </View>
     )

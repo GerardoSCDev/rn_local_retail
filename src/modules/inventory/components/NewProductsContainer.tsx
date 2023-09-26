@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, View } from "react-native"
+import { SafeAreaView, View } from "react-native"
 import { IProduct } from "../interfaces/Interfaces"
 import { NewProductCell } from "./NewProductCell"
 import { SwipeListView } from "react-native-swipe-list-view"

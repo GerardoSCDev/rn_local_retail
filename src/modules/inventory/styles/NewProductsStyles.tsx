@@ -4,7 +4,8 @@ const NewProductsStyles = StyleSheet.create({
     containerView: {
         flex: 1,
         padding: 10,
-        marginBottom: 50
+        marginBottom: 50,
+        overflow: 'hidden'
     },
     containerCell: {
         height: 60,

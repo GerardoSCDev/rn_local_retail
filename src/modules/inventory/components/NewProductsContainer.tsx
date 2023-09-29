@@ -10,7 +10,7 @@ interface NewProductsContainerProps {
 
 export const NewProductsContainer = ({ products }: NewProductsContainerProps) => {
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <SafeAreaView>
                 <SwipeListView
                     data={products}

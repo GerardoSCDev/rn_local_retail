@@ -1,5 +1,6 @@
 {
   "expo": {
+    "runtimeVersion": "1.0.0",
     "name": "rn_local_retail",
     "slug": "rn_local_retail",
     "version": "1.0.0",
@@ -21,10 +22,28 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.gerardo.sc.dev.rn_local_retail"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "84187f81-5d22-4fe7-b815-600fef52cb56"
+      }
     }
   }
 }

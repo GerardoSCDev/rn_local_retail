@@ -4,6 +4,7 @@ import { InventoryView } from "../views/InventoryView";
 import { NewProductsView } from "../views/NewProductsView";
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { InventoryStrings } from "../strings/InventoryStrings"
+import { useState } from "react";
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -11,6 +12,14 @@ const StackNavigator = createNativeStackNavigator()
 export const StackNavigationInventory = ({ }) => {
 
     const { navBar } = InventoryStrings
+    const [modalVisible, setModalVisible] = useState<boolean>(false)
+
+    const NewProductComponent = () => {
+        return <NewProductsView modalVisible={modalVisible} setModalVisible={setModalVisible} />
+    }
+
+    const focusedColor = '#B4BFCB'
+    const unFocusedColor = '#7A8EA1'
 
     return (
         <StackNavigator.Navigator
@@ -37,15 +46,15 @@ export const StackNavigationInventory = ({ }) => {
             />
             <StackNavigator.Screen
                 name='NewComponentForm'
-                component={NewProductsView}
+                component={NewProductComponent}
                 options={({ navigation }) => ({
                     title: navBar.newProductTitle,
                     headerRight: () => (
                         <MaterialCommunityIcons
                             name="barcode-scan"
                             size={30}
-                            color='#7A8EA1'
-                            onPress={() => { console.log('Show scan') }} />
+                            color={modalVisible ? focusedColor : unFocusedColor}
+                            onPress={() => setModalVisible(!modalVisible)} />
                     ),
                 })}
             />

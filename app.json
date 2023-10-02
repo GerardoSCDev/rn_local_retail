@@ -1,5 +1,6 @@
 {
   "expo": {
+    "runtimeVersion": "1.0.0",
     "name": "rn_local_retail",
     "slug": "rn_local_retail",
     "version": "1.0.0",

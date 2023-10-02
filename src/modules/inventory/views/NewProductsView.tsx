@@ -27,6 +27,7 @@ const NewProductScanContainerCell = ({ showContainer }: INewProductScanContainer
             if (showContainer) {
                 const cameraStatus = await Camera.requestCameraPermissionsAsync()
                 setHasCameraPermission(cameraStatus.status === PermissionStatus.GRANTED)
+
             }
         })()
     }, [])

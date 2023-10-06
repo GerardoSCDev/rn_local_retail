@@ -7,6 +7,9 @@
       "@modules/*": [
         "./src/modules/*"
       ],
+      "@home/*": [
+        "./src/modules2/home/*"
+      ],
       "@utils/*": [
         "./src/utils/*"
       ],

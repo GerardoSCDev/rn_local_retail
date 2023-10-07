@@ -6,7 +6,8 @@ import { View } from "react-native"
 /* --------------- Local imports -------------- */
 import { TabStyles } from "../styles/TabStyles"
 import { TabStrings } from "../strings/TabStrings"
-import { TabIcon } from "@home/components/TabIcon"
+import { TabIcon } from "../components/TabIcon"
+import InventoryStack from "../../inventory/stackNavigation/InventoryStack"
 
 const { tabNavigation } = TabStyles
 const {
@@ -25,9 +26,7 @@ const HomeScreen = () => {
             <Tab.Navigator
                 initialRouteName='Inventario'
                 screenOptions={({ route }) => ({
-                    tabBarIcon: ({ focused }) => {
-                        return <TabIcon route={route} focused={focused} />
-                    },
+                    tabBarIcon: ({ focused }) => <TabIcon route={route} focused={focused} />,
                     tabBarActiveTintColor: 'white',
                     tabBarInactiveTintColor: 'gray',
                     tabBarStyle: tabNavigation,
@@ -36,7 +35,7 @@ const HomeScreen = () => {
 
                 <Tab.Screen
                     name='Inventario'
-                    component={Inventory}
+                    component={InventoryStack}
                     options={{ title: inventoryTitle }} />
 
                 <Tab.Screen

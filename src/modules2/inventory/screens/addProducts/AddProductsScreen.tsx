@@ -1,35 +1,29 @@
+/* ------------ Dependency Imports ------------ */
 import React, { useContext, useLayoutEffect } from "react"
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Text, View } from "react-native"
+
+/* --------------- Local Imports -------------- */
+import HeaderRightIcon from "./components/HeaderRightIcon"
 import { InventoryContext } from "../../context/InventoryContext"
-
-
-interface IAddProdcutsScreen {
-    navigation: any
-}
+import { IAddProdcutsScreen } from "./interfaces/AddProductsInterfaces"
 
 const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
 
     const inventoryContext = useContext(InventoryContext)
 
     useLayoutEffect(() => {
+        setupNavigation()
+    }, [])
 
+    /* ------------ Auxiliar functions ------------ */
+    const setupNavigation = () => {
         navigation.setOptions({
             title: 'Nuevos productos',
             animation: 'flip',
-            headerRight: () => (
-                <MaterialCommunityIcons
-                    name="barcode-scan"
-                    size={30}
-                    onPress={() => {
-                        inventoryContext?.setShowScan((state) => !state)
-                        console.log(inventoryContext?.showScan)
-
-                    }} />
-            )
+            headerRight: HeaderRightIcon
         })
+    }
 
-    }, [])
 
     return <View><Text>{`Show camera: ${inventoryContext?.showScan}`}</Text></View>
 }

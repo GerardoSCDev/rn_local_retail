@@ -8,8 +8,8 @@ module.exports = function (api) {
         {
           root: ['./src'],
           alias: {
-            '@home': './src/modules2/home',
-            '@inventory': './src/modules2/inventory',
+            '@home': './src/modules/home',
+            '@inventory': './src/modules/inventory',
             '@utils': './src/utils',
           }
         }

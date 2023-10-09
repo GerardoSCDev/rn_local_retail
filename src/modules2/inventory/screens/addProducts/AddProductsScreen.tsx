@@ -1,31 +1,41 @@
 /* ------------ Dependency Imports ------------ */
 import React, { useContext, useLayoutEffect } from "react"
-import { Text, View } from "react-native"
+import { Text, View, SafeAreaView } from "react-native"
 
 /* --------------- Local Imports -------------- */
 import HeaderRightIcon from "./components/HeaderRightIcon"
 import { InventoryContext } from "../../context/InventoryContext"
 import { IAddProdcutsScreen } from "./interfaces/AddProductsInterfaces"
+import { AddProductsStrings } from "./strings/AddProductsStrings"
+import { AddProductsStyle } from "./styles/AddProductsStyle"
+import ScanCameraCell from "./components/ScanCameraCell"
+
 
 const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
 
+    const { addProductsNavTitle } = AddProductsStrings
+    const { addProductsSafeArea } = AddProductsStyle
     const inventoryContext = useContext(InventoryContext)
-
-    useLayoutEffect(() => {
-        setupNavigation()
-    }, [])
 
     /* ------------ Auxiliar functions ------------ */
     const setupNavigation = () => {
         navigation.setOptions({
-            title: 'Nuevos productos',
+            title: addProductsNavTitle,
             animation: 'flip',
             headerRight: HeaderRightIcon
         })
     }
 
+    useLayoutEffect(() => {
+        setupNavigation()
+    }, [])
 
-    return <View><Text>{`Show camera: ${inventoryContext?.showScan}`}</Text></View>
+    return (
+        <SafeAreaView style={addProductsSafeArea}>
+            {inventoryContext?.showScan && <ScanCameraCell />}
+            <Text>{`${inventoryContext?.newProducts.toLocaleString()}`}</Text>
+        </SafeAreaView>
+    )
 }
 
 export default AddProdcutsScreen

@@ -7,15 +7,17 @@ import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import ListProductsScreen from "../screens/listProducts/ListProductsScreen"
 import AddProdcutsScreen from "../screens/addProducts/AddProductsScreen"
 import { InventoryContext } from "../context/InventoryContext"
+import { IProduct } from "src/storage/models/interfaces"
 
 const StackNavigator = createNativeStackNavigator()
 
 const InventoryStack = ({ }) => {
 
     const [showScan, setShowScan] = useState<boolean>(true)
+    const [newProducts, setNewProducts] = useState<IProduct[]>([])
 
     return (
-        <InventoryContext.Provider value={{ showScan, setShowScan }} >
+        <InventoryContext.Provider value={{ showScan, setShowScan, newProducts, setNewProducts }} >
 
             <StackNavigator.Navigator screenOptions={{
                 headerTintColor: '#FFF',

@@ -1,12 +1,9 @@
-// Import Library
+/* -------------- Import Library -------------- */
 import React from 'react'
-import { ParamListBase, RouteProp } from '@react-navigation/native'
 import { MaterialIcons, Foundation } from '@expo/vector-icons'
 
-interface ITabIcon {
-    route: RouteProp<ParamListBase, string>,
-    focused: boolean
-}
+/* --------------- Local Imports -------------- */
+import { ITabIcon } from '@home/interfaces/HomeIntefaces'
 
 export const TabIcon = ({ route, focused }: ITabIcon) => {
     const focusedColor = '#A9B6C3'

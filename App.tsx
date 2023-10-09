@@ -1,5 +1,6 @@
-import HomeView from "@modules/home/views/HomeView"
+/* --------------- Local imports -------------- */
+import HomeScreen from "./src/modules/home/screens/HomeScreen"
 
 export default function App() {
-  return <HomeView />
+  return <HomeScreen />
 }

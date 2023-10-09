@@ -1,18 +1,11 @@
-import {
-    Text,
-    TouchableHighlight,
-    View
-} from "react-native"
+import { Text, TouchableHighlight, View } from "react-native"
+import { AddProductsStyle } from "../styles/AddProductsStyle"
 
-import NewProductsStyles from "../styles/NewProductsStyles"
+const NewProductCellOptions = () => {
 
-const {
-    cellOptionsContainer,
-    cellDeleteContainer,
-    cellDeleteText
-} = NewProductsStyles
+    const { cellOptionsContainer, cellDeleteContainer, cellDeleteText } = AddProductsStyle
 
-export const HiddenNewProductCellOptions = () => {
+
     return (
         <View style={cellOptionsContainer} >
             <TouchableHighlight
@@ -28,3 +21,5 @@ export const HiddenNewProductCellOptions = () => {
     )
 
 }
+
+export default NewProductCellOptions

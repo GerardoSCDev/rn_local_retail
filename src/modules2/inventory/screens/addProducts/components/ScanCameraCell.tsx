@@ -4,7 +4,7 @@ import { Alert, StyleSheet, Text, View } from 'react-native'
 import { InventoryContext } from "../../../context/InventoryContext"
 import { AddProductsStyle } from '../styles/AddProductsStyle'
 import { AddProductsStrings } from '../strings/AddProductsStrings'
-import { IProduct } from 'src/storage/models/interfaces'
+import { IProduct } from '../../../../../storage/models/interfaces'
 
 
 const ScanCameraCell = () => {

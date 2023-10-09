@@ -9,6 +9,7 @@ import { IAddProdcutsScreen } from "./interfaces/AddProductsInterfaces"
 import { AddProductsStrings } from "./strings/AddProductsStrings"
 import { AddProductsStyle } from "./styles/AddProductsStyle"
 import ScanCameraCell from "./components/ScanCameraCell"
+import NewProductsContainer from "./components/NewProductsContainer"
 
 
 const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
@@ -33,7 +34,7 @@ const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
     return (
         <SafeAreaView style={addProductsSafeArea}>
             {inventoryContext?.showScan && <ScanCameraCell />}
-            <Text>{`${inventoryContext?.newProducts.toLocaleString()}`}</Text>
+            <NewProductsContainer />
         </SafeAreaView>
     )
 }

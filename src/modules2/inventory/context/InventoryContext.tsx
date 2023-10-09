@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IProduct } from "src/storage/models/interfaces";
+import { IProduct } from "../../../storage/models/interfaces";
 
 export interface IInventoryContext {
     showScan: boolean

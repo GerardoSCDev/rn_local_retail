@@ -7,7 +7,7 @@ import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import ListProductsScreen from "../screens/listProducts/ListProductsScreen"
 import AddProdcutsScreen from "../screens/addProducts/AddProductsScreen"
 import { InventoryContext } from "../context/InventoryContext"
-import { IProduct } from "src/storage/models/interfaces"
+import { IProduct } from "../../../storage/models/interfaces"
 
 const StackNavigator = createNativeStackNavigator()
 

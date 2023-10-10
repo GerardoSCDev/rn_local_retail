@@ -1,4 +1,4 @@
-import { Camera, PermissionStatus } from 'expo-camera'
+import { BarCodeScanningResult, Camera, PermissionStatus } from 'expo-camera'
 import { useContext, useEffect, useState } from 'react'
 import { Alert, StyleSheet, Text, View } from 'react-native'
 import { InventoryContext } from "../../../context/InventoryContext"
@@ -8,7 +8,7 @@ import { IProduct } from '../../../../../storage/models/interfaces'
 
 
 const ScanCameraCell = () => {
-    const { cameraContainer, cameraSubContainer, cameraTextInstruction } = AddProductsStyle
+    const { cameraContainer, cameraSubContainer, cameraTextInstruction, cameraCenter } = AddProductsStyle
     const { scanCameraInstruction } = AddProductsStrings
     const [hasCameraPermission, setHasCameraPermission] = useState<boolean>(false)
     const inventoryContext = useContext(InventoryContext)
@@ -20,6 +20,32 @@ const ScanCameraCell = () => {
         })()
     }, [])
 
+    const onBarCodeScanned = ({ data }: BarCodeScanningResult) => {
+
+        const existProduct = inventoryContext?.newProducts.find(({ barcode }) => barcode === data)
+
+        if (!existProduct) {
+
+            const newProduct: IProduct = { nombre: 'Producto 1', barcode: data, quantity: 1 }
+            const setNewProduct = (oldProducts: IProduct[]) => [...oldProducts, newProduct]
+            inventoryContext?.setNewProducts(setNewProduct)
+
+        }
+
+        if (existProduct) {
+
+            const oldProductsMap = inventoryContext?.newProducts.map((item) => {
+                const newQuantity = { ...item, quantity: (item.quantity += 1) }
+                return (item.barcode === data) ? newQuantity : item
+            })
+
+            inventoryContext?.setNewProducts(oldProductsMap ?? [])
+        }
+
+        inventoryContext?.setShowScan(false)
+
+    }
+
     return (
         <View style={cameraContainer}>
             <View style={cameraSubContainer}>
@@ -27,14 +53,12 @@ const ScanCameraCell = () => {
                     hasCameraPermission &&
                     <Camera
                         autoFocus={true}
-                        onBarCodeScanned={({ data }) => {
-                            const newProduct: IProduct = { nombre: 'Producto 1', barcode: data }
-                            inventoryContext?.setNewProducts((oldProducts) => [...oldProducts, newProduct])
-                        }}
+                        onBarCodeScanned={onBarCodeScanned}
                         ratio='16:9'
                         style={StyleSheet.absoluteFillObject} />
                 }
 
+                <View style={cameraCenter}></View>
             </View>
             <Text style={cameraTextInstruction}>
                 {scanCameraInstruction}

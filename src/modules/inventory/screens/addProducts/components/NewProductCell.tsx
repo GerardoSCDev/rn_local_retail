@@ -13,7 +13,8 @@ const NewProductCell = ({ product }: INewProductCell) => {
 
     const {
         barcode,
-        nombre
+        nombre,
+        quantity
     } = product
 
     return (
@@ -27,6 +28,7 @@ const NewProductCell = ({ product }: INewProductCell) => {
             <View>
                 <Text>{`Nombre: ${nombre}`}</Text>
                 <Text>{`Codigo: ${barcode}`}</Text>
+                <Text>{`Cantidad: ${quantity}`}</Text>
             </View>
         </View>
     )

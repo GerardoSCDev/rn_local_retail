@@ -5,10 +5,12 @@ import { GestureResponderEvent } from 'react-native'
 
 /* --------------- Local Imports -------------- */
 import { InventoryContext } from '../../../context/InventoryContext'
+import AppColors from '../../../../../assets/colors/AppColors'
 
 const HeaderRightIcon = () => {
 
     const inventoryContext = useContext(InventoryContext)
+    const { focusedColor, unFocusedColor } = AppColors
 
     /* ------------ Auxiliar functions ------------ */
     const onPressIcon = ({ }: GestureResponderEvent) => {
@@ -19,6 +21,7 @@ const HeaderRightIcon = () => {
         <MaterialCommunityIcons
             name="barcode-scan"
             size={30}
+            color={inventoryContext?.showScan ? focusedColor : unFocusedColor}
             onPress={onPressIcon} />
     )
 }

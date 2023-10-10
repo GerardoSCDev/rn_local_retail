@@ -1,4 +1,7 @@
 import { StyleSheet } from "react-native";
+import AppColors from "../../../../../assets/colors/AppColors";
+
+const { primaryColor, unFocusedColor } = AppColors
 
 export const AddProductsStyle = StyleSheet.create({
     addProductsSafeArea: {
@@ -9,7 +12,7 @@ export const AddProductsStyle = StyleSheet.create({
     },
     cameraContainer: {
         elevation: 13,
-        shadowColor: '#112731',
+        shadowColor: primaryColor,
         width: '100%',
         height: 300,
         flex: 1,
@@ -18,12 +21,27 @@ export const AddProductsStyle = StyleSheet.create({
     },
     cameraSubContainer: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     cameraTextInstruction: {
         color: 'white',
-        bottom: 40,
-        textAlign: 'center'
+        bottom: 55,
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
+        padding: 10,
+        width: '100%',
+        backgroundColor: '#FFFFFF20',
+        textAlign: 'center',
+    },
+    cameraCenter: {
+        borderWidth: 3,
+        borderColor: unFocusedColor,
+        borderRadius: 20,
+        width: '90%',
+        height: 150,
+        bottom: 10
     },
     newProductsContainer: {
         flex: 1
@@ -58,7 +76,7 @@ export const AddProductsStyle = StyleSheet.create({
     },
     cellDeleteContainer: {
         marginRight: 5,
-        backgroundColor: '#112731',
+        backgroundColor: primaryColor,
         width: 80,
         height: 55,
         borderRadius: 8

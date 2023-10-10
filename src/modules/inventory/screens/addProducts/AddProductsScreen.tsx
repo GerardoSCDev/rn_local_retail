@@ -1,6 +1,6 @@
 /* ------------ Dependency Imports ------------ */
 import React, { useContext, useLayoutEffect } from "react"
-import { SafeAreaView } from "react-native"
+import { Modal, SafeAreaView, View, Text, Pressable } from "react-native"
 
 /* --------------- Local Imports -------------- */
 import { InventoryContext } from "../../context/InventoryContext"
@@ -10,6 +10,7 @@ import { AddProductsStyle } from "./styles/AddProductsStyle"
 import ScanCameraCell from "./components/ScanCameraCell"
 import NewProductsContainer from "./components/NewProductsContainer"
 import HeaderRightButtons from "./components/HeaderRightButtons"
+import ModalForm from "./components/ModalForm"
 
 const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
 
@@ -34,6 +35,7 @@ const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
     return (
         <SafeAreaView style={addProductsSafeArea}>
             {inventoryContext?.showScan && <ScanCameraCell />}
+            <ModalForm />
             <NewProductsContainer />
         </SafeAreaView>
     )

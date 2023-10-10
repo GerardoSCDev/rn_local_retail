@@ -15,7 +15,9 @@ const HeaderRightIcon = () => {
     /* ------------ Auxiliar functions ------------ */
     const onPressIcon = ({ }: GestureResponderEvent) => {
         inventoryContext?.setShowScan((oldState) => !oldState)
-        inventoryContext?.setShowForm((oldState) => !oldState)
+        if (inventoryContext?.showForm) {
+            inventoryContext?.setShowForm((oldState) => false)
+        }
     }
 
     const getColorIcon = (): string => {

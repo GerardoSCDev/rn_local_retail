@@ -15,7 +15,9 @@ const HeaderRightManualIcon = () => {
     /* ------------ Auxiliar functions ------------ */
     const onPressIcon = ({ }: GestureResponderEvent) => {
         inventoryContext?.setShowForm((oldState) => !oldState)
-        inventoryContext?.setShowScan((oldState) => !oldState)
+        if (inventoryContext?.showScan) {
+            inventoryContext?.setShowScan((oldState) => false)
+        }
     }
 
     const getColorIcon = (): string => {

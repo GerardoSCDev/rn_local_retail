@@ -11,4 +11,5 @@ export interface IAppTextInput {
     label: string
     error?: boolean
     style?: StyleProp<TextStyle>
+    onChangeText?: (((text: string) => void) & Function)
 }

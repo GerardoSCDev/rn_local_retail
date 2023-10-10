@@ -32,15 +32,16 @@ export const AddProductsStyle = StyleSheet.create({
         borderTopRightRadius: 50,
         padding: 10,
         width: '100%',
-        backgroundColor: '#FFFFFF30',
+        backgroundColor: '#FFFFFF20',
         textAlign: 'center',
     },
     cameraCenter: {
-        borderWidth: 5,
+        borderWidth: 3,
         borderColor: unFocusedColor,
-        borderRadius: 10,
+        borderRadius: 20,
         width: '90%',
-        height: 150
+        height: 150,
+        bottom: 10
     },
     newProductsContainer: {
         flex: 1

@@ -6,7 +6,7 @@ import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 /* --------------- Local Imports -------------- */
 import ListProductsScreen from "../screens/listProducts/ListProductsScreen"
 import AddProdcutsScreen from "../screens/addProducts/AddProductsScreen"
-import { InventoryContext } from "../context/InventoryContext"
+import { IInventoryContext, InventoryContext } from "../context/InventoryContext"
 import { IProduct } from "../../../storage/models/interfaces"
 import AppColors from "../../../assets/colors/AppColors"
 
@@ -16,10 +16,21 @@ const InventoryStack = ({ }) => {
 
     const [showScan, setShowScan] = useState<boolean>(true)
     const [newProducts, setNewProducts] = useState<IProduct[]>([])
+    const [showForm, setShowForm] = useState<boolean>(false)
+
+    const contextValues: IInventoryContext = {
+        showScan,
+        setShowScan,
+        newProducts,
+        setNewProducts,
+        showForm,
+        setShowForm
+    }
+
     const { focusedColor, primaryColor } = AppColors
 
     return (
-        <InventoryContext.Provider value={{ showScan, setShowScan, newProducts, setNewProducts }} >
+        <InventoryContext.Provider value={contextValues} >
 
             <StackNavigator.Navigator screenOptions={{
                 headerTintColor: focusedColor,

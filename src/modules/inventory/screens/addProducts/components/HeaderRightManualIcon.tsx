@@ -1,34 +1,34 @@
 /* ------------ Dependency Imports ------------ */
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 import { useContext } from 'react'
 import { GestureResponderEvent } from 'react-native'
 
-/* --------------- Local Imports -------------- */
-import { InventoryContext } from '../../../context/InventoryContext'
+/* --------------- Local imports -------------- */
 import AppColors from '../../../../../assets/colors/AppColors'
+import { InventoryContext } from '../../../context/InventoryContext'
 
-const HeaderRightIcon = () => {
+const HeaderRightManualIcon = () => {
 
     const inventoryContext = useContext(InventoryContext)
-    const { focusedColor, unFocusedColor } = AppColors
+    const { unFocusedColor, focusedColor } = AppColors
 
     /* ------------ Auxiliar functions ------------ */
     const onPressIcon = ({ }: GestureResponderEvent) => {
-        inventoryContext?.setShowScan((oldState) => !oldState)
         inventoryContext?.setShowForm((oldState) => !oldState)
+        inventoryContext?.setShowScan((oldState) => !oldState)
     }
 
     const getColorIcon = (): string => {
-        return inventoryContext?.showScan ? focusedColor : unFocusedColor
+        return inventoryContext?.showForm ? focusedColor : unFocusedColor
     }
 
     return (
-        <MaterialCommunityIcons
-            name="barcode-scan"
+        <MaterialIcons
+            name="keyboard"
             size={30}
             color={getColorIcon()}
             onPress={onPressIcon} />
     )
 }
 
-export default HeaderRightIcon
+export default HeaderRightManualIcon

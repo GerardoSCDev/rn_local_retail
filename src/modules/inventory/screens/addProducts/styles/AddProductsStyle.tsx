@@ -97,7 +97,7 @@ export const AddProductsStyle = StyleSheet.create({
         margin: 20,
         backgroundColor: 'white',
         borderRadius: 20,
-        padding: 35,
+        padding: 20,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
@@ -107,6 +107,16 @@ export const AddProductsStyle = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
+    },
+    modalContainerForms: {
+        flex: 1,
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        maxHeight: 80,
+        rowGap: 10
+    },
+    modalFormFlexBasis100: {
+        flexBasis: '100%'
     },
     modalContainerButtons: {
         flex: 1,

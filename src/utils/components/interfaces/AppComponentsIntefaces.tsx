@@ -6,3 +6,9 @@ export interface IAppButton {
     type: 'success' | 'cancel'
     style?: StyleProp<TextStyle>
 }
+
+export interface IAppTextInput {
+    label: string
+    error?: boolean
+    style?: StyleProp<TextStyle>
+}

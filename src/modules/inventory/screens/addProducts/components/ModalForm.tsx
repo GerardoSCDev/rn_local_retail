@@ -1,14 +1,15 @@
 
 import { useContext } from "react"
-import { Modal, View, Text, Pressable, GestureResponderEvent } from "react-native"
+import { Modal, View, GestureResponderEvent } from "react-native"
 import { InventoryContext } from "../../../context/InventoryContext"
 import { AddProductsStyle } from "../styles/AddProductsStyle"
 import AppButton from "../../../../../utils/components/AppButton"
+import AppTextInput from "../../../../../utils/components/AppTextInput"
 
 const ModalForm = () => {
 
     const inventoryContext = useContext(InventoryContext)
-    const { modalBackground, modalContainer, modalAppButton, modalContainerButtons } = AddProductsStyle
+    const { modalBackground, modalContainer, modalAppButton, modalContainerButtons, modalContainerForms, modalFormFlexBasis100 } = AddProductsStyle
 
     const onPressSuccess = ({ }: GestureResponderEvent) => {
         inventoryContext?.setShowForm((oldState) => !oldState)
@@ -28,10 +29,21 @@ const ModalForm = () => {
             }}>
             <View style={modalBackground}>
                 <View style={modalContainer}>
-                    <Text>Hello World!</Text>
+                    <View style={modalContainerForms}>
+                        <AppTextInput label="Código de barra" style={[modalFormFlexBasis100]} />
+                    </View>
+
                     <View style={modalContainerButtons}>
-                        <AppButton style={modalAppButton} title="Cancelar" type="cancel" onPress={onPressCancel} />
-                        <AppButton style={modalAppButton} title="Guardar" type="success" onPress={onPressSuccess} />
+                        <AppButton
+                            style={modalAppButton}
+                            title="Cancelar"
+                            type="cancel"
+                            onPress={onPressCancel} />
+                        <AppButton
+                            style={modalAppButton}
+                            title="Guardar"
+                            type="success"
+                            onPress={onPressSuccess} />
                     </View>
                 </View>
             </View>

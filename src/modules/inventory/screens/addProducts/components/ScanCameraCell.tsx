@@ -8,7 +8,7 @@ import { IProduct } from '../../../../../storage/models/interfaces'
 
 
 const ScanCameraCell = () => {
-    const { cameraContainer, cameraSubContainer, cameraTextInstruction } = AddProductsStyle
+    const { cameraContainer, cameraSubContainer, cameraTextInstruction, cameraCenter } = AddProductsStyle
     const { scanCameraInstruction } = AddProductsStrings
     const [hasCameraPermission, setHasCameraPermission] = useState<boolean>(false)
     const inventoryContext = useContext(InventoryContext)
@@ -58,6 +58,7 @@ const ScanCameraCell = () => {
                         style={StyleSheet.absoluteFillObject} />
                 }
 
+                <View style={cameraCenter}></View>
             </View>
             <Text style={cameraTextInstruction}>
                 {scanCameraInstruction}

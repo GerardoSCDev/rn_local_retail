@@ -1,6 +1,7 @@
 
 import { useContext, useState } from "react"
-import { Modal, View, GestureResponderEvent } from "react-native"
+import { Modal, View, GestureResponderEvent, Text } from "react-native"
+
 import { InventoryContext } from "../../../context/InventoryContext"
 import { AddProductsStyle } from "../styles/AddProductsStyle"
 import AppButton from "../../../../../utils/components/AppButton"
@@ -10,10 +11,16 @@ import { IProduct } from "../../../../../storage/models/interfaces"
 const ModalForm = () => {
 
     const [barCodeText, setBarCodeText] = useState<string>('')
+    const [barCodeTextError, setBarCodeTextError] = useState<boolean>(false)
     const inventoryContext = useContext(InventoryContext)
     const { modalBackground, modalContainer, modalAppButton, modalContainerButtons, modalContainerForms, modalFormFlexBasis100 } = AddProductsStyle
 
     const onPressSuccess = ({ }: GestureResponderEvent) => {
+
+        if (barCodeText === '') {
+            setBarCodeTextError(true)
+            return
+        }
 
         const existProduct = inventoryContext?.newProducts.find(({ barcode }) => barcode === barCodeText)
 
@@ -35,6 +42,8 @@ const ModalForm = () => {
             inventoryContext?.setNewProducts(oldProductsMap ?? [])
         }
 
+        setBarCodeText('')
+        setBarCodeTextError(false)
         inventoryContext?.setShowForm((oldState) => !oldState)
 
     }
@@ -57,13 +66,14 @@ const ModalForm = () => {
             }}>
             <View style={modalBackground}>
                 <View style={modalContainer}>
-
+                    <Text style={{ marginBottom: 15 }}>Ingresa nuevo producto</Text>
                     <View style={modalContainerForms}>
                         <AppTextInput
                             label="Código de barra"
                             style={[modalFormFlexBasis100]}
                             onChangeText={onChangeText}
-                            keyboardType="number-pad" />
+                            keyboardType="number-pad"
+                            error={barCodeTextError} />
                     </View>
 
                     <View style={modalContainerButtons}>

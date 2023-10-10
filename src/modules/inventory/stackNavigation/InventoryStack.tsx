@@ -8,6 +8,7 @@ import ListProductsScreen from "../screens/listProducts/ListProductsScreen"
 import AddProdcutsScreen from "../screens/addProducts/AddProductsScreen"
 import { InventoryContext } from "../context/InventoryContext"
 import { IProduct } from "../../../storage/models/interfaces"
+import AppColors from "../../../assets/colors/AppColors"
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -15,14 +16,15 @@ const InventoryStack = ({ }) => {
 
     const [showScan, setShowScan] = useState<boolean>(true)
     const [newProducts, setNewProducts] = useState<IProduct[]>([])
+    const { focusedColor, primaryColor } = AppColors
 
     return (
         <InventoryContext.Provider value={{ showScan, setShowScan, newProducts, setNewProducts }} >
 
             <StackNavigator.Navigator screenOptions={{
-                headerTintColor: '#FFF',
+                headerTintColor: focusedColor,
                 headerStyle: {
-                    backgroundColor: '#112731',
+                    backgroundColor: primaryColor,
                 }
             }}>
 
@@ -36,7 +38,7 @@ const InventoryStack = ({ }) => {
                             <MaterialIcons
                                 name="add-circle-outline"
                                 size={30}
-                                color='#7A8EA1'
+                                color={focusedColor}
                                 onPress={() => { navigation.push('AddProductScreen') }} />
                         )
                     })} />

@@ -8,6 +8,7 @@ import { TabStyles } from "../styles/TabStyles"
 import { TabStrings } from "../strings/TabStrings"
 import { TabIcon } from "../components/TabIcon"
 import InventoryStack from "../../inventory/stackNavigation/InventoryStack"
+import AppColors from "../../../assets/colors/AppColors"
 
 const { tabNavigation } = TabStyles
 const {
@@ -20,6 +21,9 @@ const Tab = createBottomTabNavigator()
 /* --------------- Setup screen --------------- */
 
 const HomeScreen = () => {
+
+    const { unFocusedColor, focusedColor } = AppColors
+
     return (
         <NavigationContainer>
 
@@ -27,8 +31,8 @@ const HomeScreen = () => {
                 initialRouteName='Inventario'
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused }) => <TabIcon route={route} focused={focused} />,
-                    tabBarActiveTintColor: 'white',
-                    tabBarInactiveTintColor: 'gray',
+                    tabBarActiveTintColor: focusedColor,
+                    tabBarInactiveTintColor: unFocusedColor,
                     tabBarStyle: tabNavigation,
                     headerShown: false
                 })} >

@@ -1,4 +1,7 @@
 import { StyleSheet } from "react-native";
+import AppColors from "../../../../../assets/colors/AppColors";
+
+const { primaryColor } = AppColors
 
 export const AddProductsStyle = StyleSheet.create({
     addProductsSafeArea: {
@@ -9,7 +12,7 @@ export const AddProductsStyle = StyleSheet.create({
     },
     cameraContainer: {
         elevation: 13,
-        shadowColor: '#112731',
+        shadowColor: primaryColor,
         width: '100%',
         height: 300,
         flex: 1,
@@ -58,7 +61,7 @@ export const AddProductsStyle = StyleSheet.create({
     },
     cellDeleteContainer: {
         marginRight: 5,
-        backgroundColor: '#112731',
+        backgroundColor: primaryColor,
         width: 80,
         height: 55,
         borderRadius: 8

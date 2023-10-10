@@ -1,4 +1,4 @@
-import { GestureResponderEvent, StyleProp, TextStyle } from "react-native"
+import { GestureResponderEvent, KeyboardTypeOptions, StyleProp, TextStyle } from "react-native"
 
 export interface IAppButton {
     onPress: ((event: GestureResponderEvent) => void)
@@ -12,4 +12,5 @@ export interface IAppTextInput {
     error?: boolean
     style?: StyleProp<TextStyle>
     onChangeText?: (((text: string) => void) & Function)
+    keyboardType?: KeyboardTypeOptions
 }

@@ -62,7 +62,8 @@ const ModalForm = () => {
                         <AppTextInput
                             label="Código de barra"
                             style={[modalFormFlexBasis100]}
-                            onChangeText={onChangeText} />
+                            onChangeText={onChangeText}
+                            keyboardType="number-pad" />
                     </View>
 
                     <View style={modalContainerButtons}>

@@ -2,7 +2,7 @@ import { TextInput } from "react-native-paper"
 import AppColors from "../../assets/colors/AppColors"
 import { IAppTextInput } from "./interfaces/AppComponentsIntefaces"
 
-const AppTextInput = ({ label, error, style, onChangeText }: IAppTextInput) => {
+const AppTextInput = ({ label, error, style, onChangeText, keyboardType }: IAppTextInput) => {
     const { primaryColor, accentColor } = AppColors
     return (
         <TextInput
@@ -13,6 +13,7 @@ const AppTextInput = ({ label, error, style, onChangeText }: IAppTextInput) => {
             label={label}
             style={[style]}
             error={error}
+            keyboardType={keyboardType}
         />
     )
 }

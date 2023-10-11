@@ -1,1 +1,1 @@
-# rn_local_retail
+# rn_local_retail app

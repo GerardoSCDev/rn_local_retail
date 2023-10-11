@@ -1,5 +1,7 @@
 {
   "expo": {
+    "title": "Mi tiendita",
+    "description": "Mi tiendita",
     "runtimeVersion": "1.0.0",
     "name": "rn_local_retail",
     "slug": "rn_local_retail",

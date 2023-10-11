@@ -41,3 +41,6 @@ jobs:
         uses: expo/expo-github-action/preview@v8
         with:
           command: eas update --auto
+      
+      - name: Tagize
+        uses: langroodi/tagize@v1.0.1

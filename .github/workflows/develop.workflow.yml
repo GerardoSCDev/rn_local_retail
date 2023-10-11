@@ -42,6 +42,7 @@ jobs:
         with:
           command: eas update --auto
       
-      - name: Pull Request Target Branch Action
-        uses: Vankka/pr-target-branch-action@v2.1
+      - name: Create a Branch
+        uses: lablnet/create-branch-from-tag@v1.0.1
+            
             

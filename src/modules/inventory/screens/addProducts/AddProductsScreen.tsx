@@ -1,16 +1,16 @@
 /* ------------ Dependency Imports ------------ */
 import React, { useContext, useLayoutEffect } from "react"
-import { Text, View, SafeAreaView } from "react-native"
+import { Modal, SafeAreaView, View, Text, Pressable } from "react-native"
 
 /* --------------- Local Imports -------------- */
-import HeaderRightIcon from "./components/HeaderRightIcon"
 import { InventoryContext } from "../../context/InventoryContext"
 import { IAddProdcutsScreen } from "./interfaces/AddProductsInterfaces"
 import { AddProductsStrings } from "./strings/AddProductsStrings"
 import { AddProductsStyle } from "./styles/AddProductsStyle"
 import ScanCameraCell from "./components/ScanCameraCell"
 import NewProductsContainer from "./components/NewProductsContainer"
-
+import HeaderRightButtons from "./components/HeaderRightButtons"
+import ModalForm from "./components/ModalForm"
 
 const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
 
@@ -19,11 +19,12 @@ const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
     const inventoryContext = useContext(InventoryContext)
 
     /* ------------ Auxiliar functions ------------ */
+
     const setupNavigation = () => {
         navigation.setOptions({
             title: addProductsNavTitle,
             animation: 'flip',
-            headerRight: HeaderRightIcon
+            headerRight: HeaderRightButtons,
         })
     }
 
@@ -34,6 +35,7 @@ const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
     return (
         <SafeAreaView style={addProductsSafeArea}>
             {inventoryContext?.showScan && <ScanCameraCell />}
+            <ModalForm />
             <NewProductsContainer />
         </SafeAreaView>
     )

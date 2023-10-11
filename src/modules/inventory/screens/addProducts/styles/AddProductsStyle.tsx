@@ -87,4 +87,45 @@ export const AddProductsStyle = StyleSheet.create({
         textAlignVertical: 'center',
         height: '100%'
     },
+    modalBackground: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#00000090'
+    },
+    modalContainer: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 20,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    modalContainerForms: {
+        flex: 1,
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        maxHeight: 80,
+        rowGap: 10
+    },
+    modalFormFlexBasis100: {
+        flexBasis: '100%'
+    },
+    modalContainerButtons: {
+        flex: 1,
+        flexDirection: 'row',
+        maxHeight: 50,
+        columnGap: 10
+    },
+    modalAppButton: {
+        paddingVertical: 15,
+        paddingHorizontal: 35
+    }
 })

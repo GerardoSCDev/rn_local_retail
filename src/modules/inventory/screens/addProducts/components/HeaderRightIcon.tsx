@@ -15,13 +15,20 @@ const HeaderRightIcon = () => {
     /* ------------ Auxiliar functions ------------ */
     const onPressIcon = ({ }: GestureResponderEvent) => {
         inventoryContext?.setShowScan((oldState) => !oldState)
+        if (inventoryContext?.showForm) {
+            inventoryContext?.setShowForm((oldState) => false)
+        }
+    }
+
+    const getColorIcon = (): string => {
+        return inventoryContext?.showScan ? focusedColor : unFocusedColor
     }
 
     return (
         <MaterialCommunityIcons
             name="barcode-scan"
             size={30}
-            color={inventoryContext?.showScan ? focusedColor : unFocusedColor}
+            color={getColorIcon()}
             onPress={onPressIcon} />
     )
 }

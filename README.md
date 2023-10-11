@@ -1,1 +1,1 @@
-# rn_local_retail app
+# rn_local_retail app native

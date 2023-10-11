@@ -1,1 +1,1 @@
-# rn_local_retail app native
+# rn_local_retail app native instruction

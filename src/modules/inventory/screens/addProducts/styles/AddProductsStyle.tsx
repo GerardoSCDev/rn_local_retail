@@ -112,8 +112,8 @@ export const AddProductsStyle = StyleSheet.create({
         flex: 1,
         flexWrap: 'wrap',
         flexDirection: 'row',
-        maxHeight: 80,
-        rowGap: 10
+        maxHeight: 220,
+        rowGap: 15
     },
     modalFormFlexBasis100: {
         flexBasis: '100%'

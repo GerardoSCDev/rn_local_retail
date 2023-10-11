@@ -7,13 +7,29 @@ import { AddProductsStyle } from "../styles/AddProductsStyle"
 import AppButton from "../../../../../utils/components/AppButton"
 import AppTextInput from "../../../../../utils/components/AppTextInput"
 import { IProduct } from "../../../../../storage/models/interfaces"
+import { IModalDataForm } from "../interfaces/AddProductsInterfaces"
 
 const ModalForm = () => {
 
     const [barCodeText, setBarCodeText] = useState<string>('')
     const [barCodeTextError, setBarCodeTextError] = useState<boolean>(false)
+
+    const [modalDataForm, setModalDataForm] = useState<IModalDataForm>({
+        barcode: { value: '', error: false },
+        product: { value: '', error: false },
+        quantity: { value: '', error: false },
+    })
+
     const inventoryContext = useContext(InventoryContext)
     const { modalBackground, modalContainer, modalAppButton, modalContainerButtons, modalContainerForms, modalFormFlexBasis100 } = AddProductsStyle
+
+    /* ------------ Auxiliar Functions ------------ */
+
+    const validateFields = () => {
+
+    }
+
+    /* -------------- Event Functions ------------- */
 
     const onPressSuccess = ({ }: GestureResponderEvent) => {
 
@@ -67,13 +83,26 @@ const ModalForm = () => {
             <View style={modalBackground}>
                 <View style={modalContainer}>
                     <Text style={{ marginBottom: 15 }}>Ingresa nuevo producto</Text>
+
                     <View style={modalContainerForms}>
                         <AppTextInput
                             label="Código de barra"
                             style={[modalFormFlexBasis100]}
                             onChangeText={onChangeText}
                             keyboardType="number-pad"
-                            error={barCodeTextError} />
+                            error={modalDataForm.barcode?.error} />
+                        <AppTextInput
+                            label="Producto"
+                            style={[modalFormFlexBasis100]}
+                            onChangeText={onChangeText}
+                            keyboardType="number-pad"
+                            error={modalDataForm.product?.error} />
+                        <AppTextInput
+                            label="Cantidad"
+                            style={[modalFormFlexBasis100]}
+                            onChangeText={onChangeText}
+                            keyboardType="number-pad"
+                            error={modalDataForm.quantity?.error} />
                     </View>
 
                     <View style={modalContainerButtons}>

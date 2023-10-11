@@ -7,3 +7,14 @@ export interface IAddProdcutsScreen {
 export interface INewProductCell {
     product: IProduct
 }
+
+export interface IModalDataForm {
+    barcode?: IModalInputs
+    product?: IModalInputs
+    quantity?: IModalInputs
+}
+
+export interface IModalInputs {
+    value: string
+    error: boolean
+}

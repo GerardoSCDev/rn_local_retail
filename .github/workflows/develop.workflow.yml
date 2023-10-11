@@ -42,19 +42,6 @@ jobs:
         with:
           command: eas update --auto
       
-      - name: Tagize
-        uses: langroodi/tagize@v1.0.1
-
-  add_labels:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-
-      - name: add labels
-        uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
-        with:
-          labels: |
-            documentation
-            changelog
+      - name: Pull Request Target Branch Action
+        uses: Vankka/pr-target-branch-action@v2.1
+            

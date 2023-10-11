@@ -1,1 +1,1 @@
-# rn_local_retail app native instruction for install
+# rn_local_retail app native instruction for install options

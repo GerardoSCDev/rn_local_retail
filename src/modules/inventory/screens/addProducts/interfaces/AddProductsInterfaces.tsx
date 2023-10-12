@@ -15,6 +15,6 @@ export interface IModalDataForm {
 }
 
 export interface IModalInputs {
-    value: string
-    error: boolean
+    value?: string
+    error?: boolean
 }

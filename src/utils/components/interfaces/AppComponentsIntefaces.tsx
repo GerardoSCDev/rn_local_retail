@@ -13,4 +13,5 @@ export interface IAppTextInput {
     style?: StyleProp<TextStyle>
     onChangeText?: (((text: string) => void) & Function)
     keyboardType?: KeyboardTypeOptions
+    value?: string | undefined
 }

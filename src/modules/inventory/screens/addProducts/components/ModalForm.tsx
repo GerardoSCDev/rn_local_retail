@@ -7,26 +7,57 @@ import { AddProductsStyle } from "../styles/AddProductsStyle"
 import AppButton from "../../../../../utils/components/AppButton"
 import AppTextInput from "../../../../../utils/components/AppTextInput"
 import { IProduct } from "../../../../../storage/models/interfaces"
+import { IModalDataForm } from "../interfaces/AddProductsInterfaces"
 
 const ModalForm = () => {
 
-    const [barCodeText, setBarCodeText] = useState<string>('')
-    const [barCodeTextError, setBarCodeTextError] = useState<boolean>(false)
+    const initialDataFormState = {
+        barcode: { value: '', error: false },
+        product: { value: '', error: false },
+        quantity: { value: '', error: false },
+    }
+    const [modalDataForm, setModalDataForm] = useState<IModalDataForm>(initialDataFormState)
+
     const inventoryContext = useContext(InventoryContext)
     const { modalBackground, modalContainer, modalAppButton, modalContainerButtons, modalContainerForms, modalFormFlexBasis100 } = AddProductsStyle
 
+    /* ------------ Auxiliar Functions ------------ */
+
+    const hasTextErrors = (): boolean => {
+
+        const isBarcodeEmpty = (modalDataForm.barcode?.value === '')
+
+        setModalDataForm((form) => ({
+            ...form,
+            barcode: { ...form.barcode, error: isBarcodeEmpty }
+        }))
+
+        return isBarcodeEmpty
+    }
+
+    /* -------------- Event Functions ------------- */
+
     const onPressSuccess = ({ }: GestureResponderEvent) => {
 
-        if (barCodeText === '') {
-            setBarCodeTextError(true)
+        const hasErrors = hasTextErrors()
+
+        if (hasErrors) {
             return
         }
 
-        const existProduct = inventoryContext?.newProducts.find(({ barcode }) => barcode === barCodeText)
+        const { barcode: barcodeText, product, quantity } = modalDataForm
+
+
+        const existProduct = inventoryContext?.newProducts.find(({ barcode }) => barcode === barcodeText?.value)
 
         if (!existProduct) {
 
-            const newProduct: IProduct = { nombre: 'Producto 1', barcode: barCodeText, quantity: 1 }
+            const quantityValue = (quantity?.value === '') ? 1 : Number(quantity?.value ?? '1')
+            const newProduct: IProduct = {
+                nombre: product?.value ?? '',
+                barcode: barcodeText?.value ?? '',
+                quantity: quantityValue
+            }
             const setNewProduct = (oldProducts: IProduct[]) => [...oldProducts, newProduct]
             inventoryContext?.setNewProducts(setNewProduct)
 
@@ -36,14 +67,13 @@ const ModalForm = () => {
 
             const oldProductsMap = inventoryContext?.newProducts.map((item) => {
                 const newQuantity = { ...item, quantity: (item.quantity += 1) }
-                return (item.barcode === barCodeText) ? newQuantity : item
+                return (item.barcode === barcodeText?.value) ? newQuantity : item
             })
 
             inventoryContext?.setNewProducts(oldProductsMap ?? [])
         }
 
-        setBarCodeText('')
-        setBarCodeTextError(false)
+        setModalDataForm(initialDataFormState)
         inventoryContext?.setShowForm((oldState) => !oldState)
 
     }
@@ -52,8 +82,23 @@ const ModalForm = () => {
         inventoryContext?.setShowForm((oldState) => !oldState)
     }
 
-    const onChangeText = (text: string) => {
-        setBarCodeText(text)
+    const onChangeBarcodeText = (text: string) => {
+        setModalDataForm((form) => ({
+            ...form,
+            barcode: { value: text, error: (text === '') }
+        }))
+    }
+    const onChangeProductText = (text: string) => {
+        setModalDataForm((form) => ({
+            ...form,
+            product: { value: text }
+        }))
+    }
+    const onChangeQuantityText = (text: string) => {
+        setModalDataForm((form) => ({
+            ...form,
+            quantity: { value: text }
+        }))
     }
 
     return (
@@ -67,13 +112,27 @@ const ModalForm = () => {
             <View style={modalBackground}>
                 <View style={modalContainer}>
                     <Text style={{ marginBottom: 15 }}>Ingresa nuevo producto</Text>
+
                     <View style={modalContainerForms}>
                         <AppTextInput
                             label="Código de barra"
                             style={[modalFormFlexBasis100]}
-                            onChangeText={onChangeText}
+                            onChangeText={onChangeBarcodeText}
                             keyboardType="number-pad"
-                            error={barCodeTextError} />
+                            error={modalDataForm.barcode?.error}
+                            value={modalDataForm.barcode?.value} />
+                        <AppTextInput
+                            label="Producto"
+                            style={[modalFormFlexBasis100]}
+                            onChangeText={onChangeProductText}
+                            keyboardType="default"
+                            value={modalDataForm.product?.value} />
+                        <AppTextInput
+                            label="Cantidad"
+                            style={[modalFormFlexBasis100]}
+                            onChangeText={onChangeQuantityText}
+                            keyboardType="number-pad"
+                            value={modalDataForm.quantity?.value} />
                     </View>
 
                     <View style={modalContainerButtons}>

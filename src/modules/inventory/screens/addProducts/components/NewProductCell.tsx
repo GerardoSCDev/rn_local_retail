@@ -22,7 +22,7 @@ const NewProductCell = ({ product }: INewProductCell) => {
             <View style={newProductCellContainerImage}>
                 <Image
                     style={newProductCellImage}
-                    source={require('../../../../../../assets/inventory/empty-products.png')} />
+                    source={require('../../../../../assets/inventory/addProducts/empty-products.png')} />
             </View>
 
             <View>

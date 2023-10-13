@@ -1,4 +1,4 @@
-import { SafeAreaView, View } from "react-native"
+import { SafeAreaView, View, Image } from "react-native"
 import { SwipeListView } from "react-native-swipe-list-view"
 import { useContext } from "react"
 
@@ -15,7 +15,6 @@ const NewProductsContainer = () => {
     return (
         <View style={newProductsContainer}>
             <SafeAreaView>
-
                 <SwipeListView
                     data={inventoryContext?.newProducts}
                     numColumns={1}

@@ -4,6 +4,15 @@ import AppColors from "../../../../../assets/colors/AppColors";
 const { primaryColor, unFocusedColor } = AppColors
 
 export const AddProductsStyle = StyleSheet.create({
+    headersButtonContainer: {
+        flexDirection: 'row',
+    },
+    headersButtonTwoSpace: {
+        columnGap: 15,
+    },
+    headersButtonThreeSpace: {
+        columnGap: 10,
+    },
     addProductsSafeArea: {
         flex: 1,
         padding: 10,

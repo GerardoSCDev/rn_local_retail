@@ -5,6 +5,7 @@ import { InventoryContext } from "../../../context/InventoryContext"
 import { AddProductsStyle } from '../styles/AddProductsStyle'
 import { AddProductsStrings } from '../strings/AddProductsStrings'
 import { IProduct } from '../../../../../storage/models/interfaces'
+import { IModalDataForm } from '../interfaces/AddProductsInterfaces'
 
 
 const ScanCameraCell = () => {
@@ -25,20 +26,16 @@ const ScanCameraCell = () => {
         const existProduct = inventoryContext?.newProducts.find(({ barcode }) => barcode === data)
 
         if (!existProduct) {
-
-            const newProduct: IProduct = { nombre: 'Producto 1', barcode: data, quantity: 1 }
-            const setNewProduct = (oldProducts: IProduct[]) => [...oldProducts, newProduct]
-            inventoryContext?.setNewProducts(setNewProduct)
-
+            const newProduct: IModalDataForm = { barcode: { value: data } }
+            inventoryContext?.setModalDataForm(newProduct)
+            inventoryContext?.setShowForm(true)
         }
 
         if (existProduct) {
-
             const oldProductsMap = inventoryContext?.newProducts.map((item) => {
                 const newQuantity = { ...item, quantity: (item.quantity += 1) }
                 return (item.barcode === data) ? newQuantity : item
             })
-
             inventoryContext?.setNewProducts(oldProductsMap ?? [])
         }
 

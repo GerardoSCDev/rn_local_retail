@@ -9,6 +9,7 @@ import AddProdcutsScreen from "../screens/addProducts/AddProductsScreen"
 import { IInventoryContext, InventoryContext } from "../context/InventoryContext"
 import { IProduct } from "../../../storage/models/interfaces"
 import AppColors from "../../../assets/colors/AppColors"
+import { IModalDataForm } from "../screens/addProducts/interfaces/AddProductsInterfaces"
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -17,6 +18,7 @@ const InventoryStack = ({ }) => {
     const [showScan, setShowScan] = useState<boolean>(true)
     const [newProducts, setNewProducts] = useState<IProduct[]>([])
     const [showForm, setShowForm] = useState<boolean>(false)
+    const [modalDataForm, setModalDataForm] = useState<IModalDataForm>({})
 
     const contextValues: IInventoryContext = {
         showScan,
@@ -24,7 +26,9 @@ const InventoryStack = ({ }) => {
         newProducts,
         setNewProducts,
         showForm,
-        setShowForm
+        setShowForm,
+        modalDataForm,
+        setModalDataForm
     }
 
     const { focusedColor, primaryColor } = AppColors

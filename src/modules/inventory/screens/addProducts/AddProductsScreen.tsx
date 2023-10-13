@@ -35,7 +35,10 @@ const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
     return (
         <SafeAreaView style={addProductsSafeArea}>
             {inventoryContext?.showScan && <ScanCameraCell />}
-            <ModalForm />
+            <ModalForm
+                barcode={inventoryContext?.modalDataForm.barcode}
+                product={inventoryContext?.modalDataForm.product}
+                quantity={inventoryContext?.modalDataForm.quantity} />
             <NewProductsContainer />
         </SafeAreaView>
     )

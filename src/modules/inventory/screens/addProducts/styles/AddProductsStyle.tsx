@@ -127,5 +127,18 @@ export const AddProductsStyle = StyleSheet.create({
     modalAppButton: {
         paddingVertical: 15,
         paddingHorizontal: 35
+    },
+    emptyContainer: {
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    emptyImage: {
+        maxHeight: '50%',
+        maxWidth: '80%'
+    },
+    emptyImageTitle: {
+        textAlign: 'center'
     }
 })

@@ -20,7 +20,7 @@ const NewProductsContainer = () => {
                     data={inventoryContext?.newProducts}
                     numColumns={1}
                     renderItem={({ item }) => <NewProductCell product={item} />}
-                    renderHiddenItem={(data, rowMap) => <NewProductCellOptions />}
+                    renderHiddenItem={(data, rowMap) => <NewProductCellOptions data={data} rowMap={rowMap} />}
                     rightOpenValue={-95}
                     disableRightSwipe={true} />
 

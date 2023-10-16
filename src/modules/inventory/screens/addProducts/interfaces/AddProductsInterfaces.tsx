@@ -9,6 +9,7 @@ export interface INewProductCell {
 }
 
 export interface IModalDataForm {
+    typeForm?: 'add' | 'edit'
     barcode?: IModalInputs
     product?: IModalInputs
     quantity?: IModalInputs

@@ -11,10 +11,11 @@ import { IProduct } from "../../../../../storage/models/interfaces"
 import { IModalDataForm } from "../interfaces/AddProductsInterfaces"
 import { AddProductsStrings } from "../strings/AddProductsStrings"
 
-const ModalForm = ({ barcode, product, quantity }: IModalDataForm) => {
+const ModalForm = ({ barcode, product, quantity, typeForm = 'add' }: IModalDataForm) => {
 
     const {
-        modalFormTitle,
+        modalFormAddTitle,
+        modalFormEditTitle,
         inputBarcodeTitle,
         inputProductTitle,
         inputQuantityTitle,
@@ -34,7 +35,8 @@ const ModalForm = ({ barcode, product, quantity }: IModalDataForm) => {
     const initialDataFormState: IModalDataForm = {
         barcode: { error: false, value: '' },
         product: { error: false, value: '' },
-        quantity: { error: false, value: '' }
+        quantity: { error: false, value: '' },
+        typeForm: 'add'
     }
     const [modalDataForm, setModalDataForm] = useState<IModalDataForm>({})
 
@@ -42,8 +44,8 @@ const ModalForm = ({ barcode, product, quantity }: IModalDataForm) => {
 
 
     useEffect(() => {
-        setModalDataForm({ barcode, product, quantity })
-    }, [barcode, product, quantity])
+        setModalDataForm({ barcode, product, quantity, typeForm })
+    }, [barcode, product, quantity, typeForm])
 
     /* ------------ Auxiliar Functions ------------ */
 
@@ -59,10 +61,27 @@ const ModalForm = ({ barcode, product, quantity }: IModalDataForm) => {
         inventoryContext?.setNewProducts(setNewProduct)
     }
 
+    const editDataProducts = () => {
+        const { barcode: barcodeText, product, quantity: quantityText } = modalDataForm
+        const oldProductsMap = inventoryContext?.newProducts.map((item) => {
+            const newQuantity = {
+                ...item,
+                nombre: product?.value ?? '',
+                quantity: Number(quantityText?.value ?? '0')
+            }
+            return (item.barcode === barcodeText?.value) ? newQuantity : item
+        })
+
+        inventoryContext?.setNewProducts(oldProductsMap ?? [])
+    }
+
     const addQuantityToProduct = () => {
         const { barcode: barcodeText } = modalDataForm
         const oldProductsMap = inventoryContext?.newProducts.map((item) => {
-            const newQuantity = { ...item, quantity: (item.quantity += 1) }
+            const newQuantity = {
+                ...item,
+                quantity: (item.quantity += 1)
+            }
             return (item.barcode === barcodeText?.value) ? newQuantity : item
         })
 
@@ -105,7 +124,7 @@ const ModalForm = ({ barcode, product, quantity }: IModalDataForm) => {
         }
 
         if (existProduct) {
-            addQuantityToProduct()
+            editDataProducts()
         }
 
         finishModalForm()
@@ -135,6 +154,8 @@ const ModalForm = ({ barcode, product, quantity }: IModalDataForm) => {
         }))
     }
 
+    console.log([typeForm])
+
     return (
         <Modal
             animationType="slide"
@@ -145,7 +166,9 @@ const ModalForm = ({ barcode, product, quantity }: IModalDataForm) => {
             }}>
             <View style={modalBackground}>
                 <View style={modalContainer}>
-                    <Text style={{ marginBottom: 15 }}>{modalFormTitle}</Text>
+                    <Text style={{ marginBottom: 15 }}>
+                        {(typeForm === 'add') ? modalFormAddTitle : modalFormEditTitle}
+                    </Text>
 
                     <View style={modalContainerForms}>
                         <AppTextInput
@@ -154,7 +177,8 @@ const ModalForm = ({ barcode, product, quantity }: IModalDataForm) => {
                             onChangeText={onChangeBarcodeText}
                             keyboardType="number-pad"
                             error={modalDataForm.barcode?.error}
-                            value={modalDataForm.barcode?.value} />
+                            value={modalDataForm.barcode?.value}
+                            disabled={(typeForm === 'edit')} />
                         <AppTextInput
                             label={inputProductTitle}
                             style={[modalFormFlexBasis100]}

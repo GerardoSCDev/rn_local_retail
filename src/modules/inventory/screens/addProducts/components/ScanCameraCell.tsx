@@ -21,22 +21,30 @@ const ScanCameraCell = () => {
         })()
     }, [])
 
+    const addDataProducts = (data: string) => {
+        const newProduct: IModalDataForm = { barcode: { value: data } }
+        inventoryContext?.setModalDataForm(newProduct)
+        inventoryContext?.setShowForm(true)
+    }
+
+    const addQuantityToProduct = (data: string) => {
+        const oldProductsMap = inventoryContext?.newProducts.map((item) => {
+            const newQuantity = { ...item, quantity: (item.quantity += 1) }
+            return (item.barcode === data) ? newQuantity : item
+        })
+        inventoryContext?.setNewProducts(oldProductsMap ?? [])
+    }
+
     const onBarCodeScanned = ({ data }: BarCodeScanningResult) => {
 
         const existProduct = inventoryContext?.newProducts.find(({ barcode }) => barcode === data)
 
         if (!existProduct) {
-            const newProduct: IModalDataForm = { barcode: { value: data } }
-            inventoryContext?.setModalDataForm(newProduct)
-            inventoryContext?.setShowForm(true)
+            addDataProducts(data)
         }
 
         if (existProduct) {
-            const oldProductsMap = inventoryContext?.newProducts.map((item) => {
-                const newQuantity = { ...item, quantity: (item.quantity += 1) }
-                return (item.barcode === data) ? newQuantity : item
-            })
-            inventoryContext?.setNewProducts(oldProductsMap ?? [])
+            addQuantityToProduct(data)
         }
 
         inventoryContext?.setShowScan(false)

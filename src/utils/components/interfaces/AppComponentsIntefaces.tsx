@@ -14,4 +14,5 @@ export interface IAppTextInput {
     onChangeText?: (((text: string) => void) & Function)
     keyboardType?: KeyboardTypeOptions
     value?: string | undefined
+    disabled?: boolean
 }

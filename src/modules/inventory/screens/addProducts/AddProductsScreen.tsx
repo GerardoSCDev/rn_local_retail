@@ -44,7 +44,8 @@ const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
                 <ModalForm
                     barcode={inventoryContext?.modalDataForm.barcode}
                     product={inventoryContext?.modalDataForm.product}
-                    quantity={inventoryContext?.modalDataForm.quantity} />
+                    quantity={inventoryContext?.modalDataForm.quantity}
+                    typeForm={inventoryContext?.modalDataForm.typeForm} />
                 <NewProductsContainer />
             </SafeAreaView>
         )

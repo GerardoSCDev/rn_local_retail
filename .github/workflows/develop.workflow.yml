@@ -53,5 +53,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if you don't want to set write permissions use a PAT token
           INITIAL_VERSION: '0.0.0'
+      
+      - name: Delete merged branch
+        uses: SvanBoxel/delete-merged-branch@1.4.3
+      
             
             

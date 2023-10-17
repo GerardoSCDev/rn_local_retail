@@ -149,5 +149,34 @@ export const AddProductsStyle = StyleSheet.create({
     },
     emptyImageTitle: {
         textAlign: 'center'
+    },
+    modalSuccessBackground: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#00000090'
+    },
+    modalSuccessContainer: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 20,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    modalSuccessImage: {
+        width: 150,
+        height: 150
+    },
+    modalSuccessText: {
+        width: '100%',
+        textAlign: 'center'
     }
 })

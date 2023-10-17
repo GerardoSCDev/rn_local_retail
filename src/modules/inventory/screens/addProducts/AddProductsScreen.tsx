@@ -12,6 +12,7 @@ import NewProductsContainer from "./components/NewProductsContainer"
 import HeaderRightButtons from "./components/HeaderRightButtons"
 import ModalForm from "./components/ModalForm"
 import EmptyProducts from "./components/NewProductsEmpty"
+import ModalSuccess from "./components/ModalSuccess"
 
 const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
 
@@ -46,6 +47,7 @@ const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
                     product={inventoryContext?.modalDataForm.product}
                     quantity={inventoryContext?.modalDataForm.quantity}
                     typeForm={inventoryContext?.modalDataForm.typeForm} />
+                <ModalSuccess />
                 <NewProductsContainer />
             </SafeAreaView>
         )

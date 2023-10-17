@@ -19,3 +19,7 @@ export interface IModalInputs {
     value?: string
     error?: boolean
 }
+
+export interface IModalSuccess {
+    show: boolean
+}

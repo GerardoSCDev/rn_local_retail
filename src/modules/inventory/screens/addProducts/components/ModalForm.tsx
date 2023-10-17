@@ -154,8 +154,6 @@ const ModalForm = ({ barcode, product, quantity, typeForm = 'add' }: IModalDataF
         }))
     }
 
-    console.log([typeForm])
-
     return (
         <Modal
             animationType="slide"

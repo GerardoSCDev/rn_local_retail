@@ -19,6 +19,7 @@ const InventoryStack = ({ }) => {
     const [newProducts, setNewProducts] = useState<IProduct[]>([])
     const [showForm, setShowForm] = useState<boolean>(false)
     const [modalDataForm, setModalDataForm] = useState<IModalDataForm>({})
+    const [showSuccessModal, setSuccessShowModal] = useState<boolean>(false)
 
     const contextValues: IInventoryContext = {
         showScan,
@@ -28,7 +29,9 @@ const InventoryStack = ({ }) => {
         showForm,
         setShowForm,
         modalDataForm,
-        setModalDataForm
+        setModalDataForm,
+        showSuccessModal,
+        setSuccessShowModal
     }
 
     const { focusedColor, primaryColor } = AppColors

@@ -1,4 +1,16 @@
 {
+    "cli": {
+        "version": ">= 0.34.0",
+        "appVersionSource": "remote"
+    },
+    "submit": {
+        "production": {
+            "android": {
+                "serviceAccountKeyPath": "C:/Users/geras/Downloads/pc-api-7496689777392440213-243-5c27d38a3d9c.json",
+                "track": "internal"
+            }
+        }
+    },
     "build": {
         "development": {
             "developmentClient": true,
@@ -7,6 +19,8 @@
         "preview": {
             "distribution": "internal"
         },
-        "production": {}
+        "production": {
+            "autoIncrement": true
+        }
     }
 }

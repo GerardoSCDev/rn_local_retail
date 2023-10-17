@@ -1,11 +1,14 @@
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { useEffect } from "react"
-import { Text, View } from "react-native"
+import { useContext, useEffect } from "react"
+import { SafeAreaView, Text, Image, View, FlatList, StatusBar } from "react-native"
 import { IProduct } from "../../../../storage/models/interfaces"
 import LocalStorage from "../../../../storage/LocalStorage"
+import { InventoryContext } from "../../context/InventoryContext"
+import { ListProductStyles } from "./styles/ListProductsStyles"
+import ProductCell from "./components/ProductCell"
 
 const ListProductsScreen = () => {
-
+    const { areaListView, containerListProduct } = ListProductStyles
+    const inventoryContext = useContext(InventoryContext)
 
     useEffect(() => {
 
@@ -17,11 +20,26 @@ const ListProductsScreen = () => {
         const localStorage = new LocalStorage()
         localStorage.getProductStorage()
             .then((products) => {
-
+                console.log(products)
+                inventoryContext?.setStockProducts(products)
             })
     }
 
-    return <View><Text>ListProductsScreenee</Text></View>
+    return (
+        <View style={containerListProduct}>
+            <SafeAreaView style={areaListView}>
+                <FlatList
+                    data={inventoryContext?.stockProducts}
+                    numColumns={3}
+                    renderItem={({ item }) => <ProductCell
+                        barcode={item.barcode}
+                        nombre={item.nombre}
+                        quantity={item.quantity} />}
+                    keyExtractor={item => item.barcode}
+                />
+            </SafeAreaView>
+        </View>
+    )
 }
 
 export default ListProductsScreen

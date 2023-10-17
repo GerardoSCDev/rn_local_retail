@@ -17,6 +17,9 @@ export interface IInventoryContext {
 
     showSuccessModal: boolean
     setSuccessShowModal: React.Dispatch<React.SetStateAction<boolean>>
+
+    stockProducts: IProduct[]
+    setStockProducts: React.Dispatch<React.SetStateAction<IProduct[]>>
 }
 
 export const InventoryContext = createContext<IInventoryContext | null>(null)

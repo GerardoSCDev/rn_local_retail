@@ -12,7 +12,7 @@ class LocalStorage {
 
         try {
             const jsonNewProducts = JSON.stringify(newProducts)
-            await AsyncStorage.setItem('local_products', jsonNewProducts)
+            await AsyncStorage.setItem(this.productsKey, jsonNewProducts)
             successHandler()
         } catch (error) {
             errorHandler(`${error}`)

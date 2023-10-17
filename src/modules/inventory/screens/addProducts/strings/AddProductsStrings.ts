@@ -9,4 +9,5 @@ export const AddProductsStrings = {
     inputQuantityTitle: 'Cantidad',
     buttonFormCancel: 'Cancelar',
     buttonFormSuccess: 'Guardar',
+    modalSuccessMsg: 'Se ha actualizado tu inventario',
 }

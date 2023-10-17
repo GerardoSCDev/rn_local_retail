@@ -14,6 +14,9 @@ export interface IInventoryContext {
 
     modalDataForm: IModalDataForm
     setModalDataForm: React.Dispatch<React.SetStateAction<IModalDataForm>>
+
+    showSuccessModal: boolean
+    setSuccessShowModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const InventoryContext = createContext<IInventoryContext | null>(null)

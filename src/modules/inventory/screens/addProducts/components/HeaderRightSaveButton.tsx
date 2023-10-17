@@ -5,16 +5,36 @@ import { GestureResponderEvent } from 'react-native'
 
 /* --------------- Local imports -------------- */
 import { InventoryContext } from '../../../context/InventoryContext'
+import LocalStorage from '../../../../../storage/LocalStorage'
 
 const HeaderRightSaveButton = () => {
 
-    /* ------------ Auxiliar functions ------------ */
-    const onPressIcon = ({ }: GestureResponderEvent) => {
-
-    }
-
     const inventoryContext = useContext(InventoryContext)
     const showSaveButton = inventoryContext?.newProducts.length ?? 0 >= 1
+
+    /* ------------ Auxiliar functions ------------ */
+    const setProdcutsStorage = async () => {
+        const newProducts = inventoryContext?.newProducts
+        const localStorage = new LocalStorage()
+        localStorage.setProdcutsStorage(newProducts ?? [], successHandler, errorHandler)
+    }
+
+    const successHandler = () => {
+        inventoryContext?.setSuccessShowModal(true)
+        setTimeout(() => {
+            inventoryContext?.setSuccessShowModal(false)
+            inventoryContext?.setNewProducts([])
+        }, 5000)
+    }
+
+    const errorHandler = (error: string) => {
+        console.log([error])
+    }
+
+    /* -------------- Event function -------------- */
+    const onPressIcon = ({ }: GestureResponderEvent) => {
+        setProdcutsStorage()
+    }
 
     return (
         <MaterialIcons

@@ -29,5 +29,18 @@ export const ListProductStyles = StyleSheet.create({
     },
     titlesProduct: {
         textAlign: 'justify'
-    }
+    },
+    emptyContainer: {
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    emptyImage: {
+        maxHeight: '50%',
+        maxWidth: '80%'
+    },
+    emptyImageTitle: {
+        textAlign: 'center'
+    },
 })

@@ -5,6 +5,7 @@ import LocalStorage from "../../../../storage/LocalStorage"
 import { InventoryContext } from "../../context/InventoryContext"
 import { ListProductStyles } from "./styles/ListProductsStyles"
 import ProductCell from "./components/ProductCell"
+import ListProductsEmpty from "./components/ListProductsEmpty"
 
 const ListProductsScreen = () => {
     const { areaListView, containerListProduct } = ListProductStyles
@@ -24,7 +25,13 @@ const ListProductsScreen = () => {
             })
     }
 
+    if (inventoryContext?.stockProducts.length === 0) {
+        return <ListProductsEmpty />
+    }
+
+
     return (
+
         <View style={containerListProduct}>
             <SafeAreaView style={areaListView}>
                 <FlatList

@@ -20,7 +20,6 @@ const ListProductsScreen = () => {
         const localStorage = new LocalStorage()
         localStorage.getProductStorage()
             .then((products) => {
-                console.log(products)
                 inventoryContext?.setStockProducts(products)
             })
     }

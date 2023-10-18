@@ -28,7 +28,7 @@ const HeaderRightSaveButton = () => {
     }
 
     const errorHandler = (error: string) => {
-        console.log([error])
+
     }
 
     /* -------------- Event function -------------- */

@@ -42,16 +42,6 @@ const HomeScreen = () => {
                     component={InventoryStack}
                     options={{ title: inventoryTitle }} />
 
-                <Tab.Screen
-                    name='Resumen'
-                    component={Inventory}
-                    options={{ title: summaryTitle }} />
-
-                <Tab.Screen
-                    name='Ventas'
-                    component={Inventory}
-                    options={{ title: salesTitle }} />
-
             </Tab.Navigator>
 
         </NavigationContainer>

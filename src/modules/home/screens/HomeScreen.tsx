@@ -2,7 +2,7 @@
 /* ------------ Dependency imports ------------ */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { NavigationContainer } from "@react-navigation/native"
-import { View } from "react-native"
+import { LayoutChangeEvent, View } from "react-native"
 /* --------------- Local imports -------------- */
 import { TabStyles } from "../styles/TabStyles"
 import { TabStrings } from "../strings/TabStrings"
@@ -19,8 +19,10 @@ const {
 const Tab = createBottomTabNavigator()
 
 /* --------------- Setup screen --------------- */
-
-const HomeScreen = () => {
+interface IHomeScreen {
+    onLayout?: ((event: LayoutChangeEvent) => void) | undefined
+}
+const HomeScreen = ({ }: IHomeScreen) => {
 
     const { unFocusedColor, focusedColor } = AppColors
 
@@ -49,9 +51,3 @@ const HomeScreen = () => {
 }
 
 export default HomeScreen
-
-const Inventory = () => {
-    return (
-        <View></View>
-    )
-}

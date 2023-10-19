@@ -27,26 +27,27 @@ const HomeScreen = ({ }: IHomeScreen) => {
     const { unFocusedColor, focusedColor } = AppColors
 
     return (
-        <NavigationContainer>
+        <View style={{ flex: 1 }}>
+            <NavigationContainer>
+                <Tab.Navigator
+                    initialRouteName='Inventario'
+                    screenOptions={({ route }) => ({
+                        tabBarIcon: ({ focused }) => <TabIcon route={route} focused={focused} />,
+                        tabBarActiveTintColor: focusedColor,
+                        tabBarInactiveTintColor: unFocusedColor,
+                        tabBarStyle: tabNavigation,
+                        headerShown: false
+                    })} >
 
-            <Tab.Navigator
-                initialRouteName='Inventario'
-                screenOptions={({ route }) => ({
-                    tabBarIcon: ({ focused }) => <TabIcon route={route} focused={focused} />,
-                    tabBarActiveTintColor: focusedColor,
-                    tabBarInactiveTintColor: unFocusedColor,
-                    tabBarStyle: tabNavigation,
-                    headerShown: false
-                })} >
+                    <Tab.Screen
+                        name='Inventario'
+                        component={InventoryStack}
+                        options={{ title: inventoryTitle }} />
 
-                <Tab.Screen
-                    name='Inventario'
-                    component={InventoryStack}
-                    options={{ title: inventoryTitle }} />
+                </Tab.Navigator>
 
-            </Tab.Navigator>
-
-        </NavigationContainer>
+            </NavigationContainer>
+        </View>
     )
 }
 

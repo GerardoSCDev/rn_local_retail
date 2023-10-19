@@ -27,25 +27,26 @@ const ListProductsScreen = () => {
 
     if (inventoryContext?.stockProducts.length === 0) {
         return <ListProductsEmpty />
+    } else {
+        return (
+
+            <View style={containerListProduct} accessible={true}>
+                <SafeAreaView style={areaListView}>
+                    <FlatList
+                        data={inventoryContext?.stockProducts}
+                        numColumns={3}
+                        renderItem={({ item }) => <ProductCell
+                            barcode={item.barcode}
+                            nombre={item.nombre}
+                            quantity={item.quantity} />}
+                        keyExtractor={item => item.barcode}
+                    />
+                </SafeAreaView>
+            </View>
+        )
     }
 
 
-    return (
-
-        <View style={containerListProduct}>
-            <SafeAreaView style={areaListView}>
-                <FlatList
-                    data={inventoryContext?.stockProducts}
-                    numColumns={3}
-                    renderItem={({ item }) => <ProductCell
-                        barcode={item.barcode}
-                        nombre={item.nombre}
-                        quantity={item.quantity} />}
-                    keyExtractor={item => item.barcode}
-                />
-            </SafeAreaView>
-        </View>
-    )
 }
 
 export default ListProductsScreen

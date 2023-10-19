@@ -21,5 +21,4 @@ export const TabIcon = ({ route, focused }: ITabIcon) => {
     if (route.name === 'Ventas') {
         return <MaterialIcons name="attach-money" size={24} color={currentColor} />
     }
-    return <></>
 }

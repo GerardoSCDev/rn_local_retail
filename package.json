@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build-apk": "eas build -p android --profile preview",
-    "build-to-store": "eas submit --platform android",
+    "eas-submit": "eas submit --platform android",
     "eas-build": "eas build --platform android"
   },
   "dependencies": {

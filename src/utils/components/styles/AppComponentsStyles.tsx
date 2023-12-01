@@ -11,5 +11,10 @@ export const AppComponentsStyles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
+    },
+    textTitleAppButton: {
+        width: '100%',
+        textAlign: 'center',
+        color: '#FFFFFF'
     }
 })

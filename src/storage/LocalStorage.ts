@@ -5,6 +5,31 @@ import { IProduct } from "./models/interfaces"
 class LocalStorage {
 
     private productsKey: string = 'products_key'
+    private privacyConfirmKey: string = 'privacy_confirm_key'
+
+    setPrivacyConfirm = async (confirm: boolean,
+        successHandler: () => void,
+        errorHandler: (error: string) => void) => {
+
+        try {
+            await AsyncStorage.setItem(this.privacyConfirmKey, `${confirm}`)
+            successHandler()
+        } catch (error) {
+            errorHandler(`${error}`)
+        }
+
+    }
+
+    getPrivacyConfirm = async (): Promise<boolean> => {
+        try {
+            const confirmStorage = await AsyncStorage.getItem(this.privacyConfirmKey)
+            const confir = Boolean(confirmStorage)
+
+            return confir ?? false
+        } catch (error) {
+            return false
+        }
+    }
 
     setProdcutsStorage = async (newProducts: IProduct[],
         successHandler: () => void,

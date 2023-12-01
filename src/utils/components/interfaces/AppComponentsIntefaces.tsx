@@ -3,7 +3,7 @@ import { GestureResponderEvent, KeyboardTypeOptions, StyleProp, TextStyle } from
 export interface IAppButton {
     onPress: ((event: GestureResponderEvent) => void)
     title: string
-    type: 'success' | 'cancel'
+    type: 'success' | 'cancel' | 'successDisable'
     style?: StyleProp<TextStyle>
 }
 

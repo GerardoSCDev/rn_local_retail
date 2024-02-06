@@ -9,29 +9,18 @@ import { AddProductsStrings } from "./strings/AddProductsStrings"
 import { AddProductsStyle } from "./styles/AddProductsStyle"
 import ScanCameraCell from "./components/ScanCameraCell"
 import NewProductsContainer from "./components/NewProductsContainer"
-import HeaderRightButtons from "./components/HeaderRightButtons"
 import ModalForm from "./components/ModalForm"
 import EmptyProducts from "./components/NewProductsEmpty"
 import ModalSuccess from "./components/ModalSuccess"
 
 const AddProdcutsScreen = ({ navigation = null }: IAddProdcutsScreen) => {
 
-    const { addProductsNavTitle } = AddProductsStrings
     const { addProductsSafeArea } = AddProductsStyle
     const inventoryContext = useContext(InventoryContext)
 
     /* ------------ Auxiliar functions ------------ */
 
-    const setupNavigation = () => {
-        navigation.setOptions({
-            title: addProductsNavTitle,
-            animation: 'flip',
-            headerRight: HeaderRightButtons,
-        })
-    }
-
     useLayoutEffect(() => {
-        setupNavigation()
     }, [])
 
     const showEmptyImage = (inventoryContext?.newProducts.length === 0 && !inventoryContext.showScan && !inventoryContext.showForm)

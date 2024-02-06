@@ -4,6 +4,10 @@ export interface IAddProdcutsScreen {
     navigation: any
 }
 
+export interface IHeaderRightSaveButton {
+    navigation: any
+}
+
 export interface INewProductCell {
     product: IProduct
 }

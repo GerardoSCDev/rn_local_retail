@@ -1,5 +1,5 @@
 /* ------------ Dependency imports ------------ */
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
@@ -10,11 +10,22 @@ import { IInventoryContext, InventoryContext } from "../context/InventoryContext
 import { IProduct } from "../../../storage/models/interfaces"
 import AppColors from "../../../assets/colors/AppColors"
 import { IModalDataForm } from "../screens/addProducts/interfaces/AddProductsInterfaces"
+import { View } from "react-native"
+import HeaderRightIcon from "../screens/addProducts/components/HeaderRightIcon"
+import HeaderRightManualIcon from "../screens/addProducts/components/HeaderRightManualIcon"
+import HeaderRightSaveButton from "../screens/addProducts/components/HeaderRightSaveButton"
+import { AddProductsStrings } from "../screens/addProducts/strings/AddProductsStrings"
+import { AddProductsStyle } from "../screens/addProducts/styles/AddProductsStyle"
 
 const StackNavigator = createNativeStackNavigator()
 
 const InventoryStack = ({ }) => {
 
+    const { addProductsNavTitle } = AddProductsStrings
+    const { headersButtonContainer, headersButtonTwoSpace, headersButtonThreeSpace } = AddProductsStyle
+    const inventoryContext = useContext(InventoryContext)
+    const showSaveButton = inventoryContext?.newProducts.length ?? 0 >= 1
+    const containerStyle = [headersButtonContainer, showSaveButton ? headersButtonThreeSpace : headersButtonTwoSpace]
     const [showScan, setShowScan] = useState<boolean>(true)
     const [newProducts, setNewProducts] = useState<IProduct[]>([])
     const [showForm, setShowForm] = useState<boolean>(false)
@@ -65,8 +76,20 @@ const InventoryStack = ({ }) => {
                     })} />
 
                 <StackNavigator.Screen
-                    name='AddProductScreen'
-                    component={AddProdcutsScreen} />
+                    name="AddProductScreen"
+                    component={AddProdcutsScreen}
+                    options={({ navigation }) => ({
+                        title: addProductsNavTitle,
+                        animation: 'flip',
+                        headerRight: () => (
+                            <View style={containerStyle}>
+                                <HeaderRightIcon />
+                                <HeaderRightManualIcon />
+                                <HeaderRightSaveButton navigation={navigation} />
+                            </View>
+                        )
+                    })}
+                />
 
             </StackNavigator.Navigator>
         </InventoryContext.Provider>

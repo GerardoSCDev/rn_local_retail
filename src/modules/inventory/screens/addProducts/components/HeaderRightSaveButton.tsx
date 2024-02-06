@@ -6,8 +6,9 @@ import { GestureResponderEvent } from 'react-native'
 /* --------------- Local imports -------------- */
 import { InventoryContext } from '../../../context/InventoryContext'
 import LocalStorage from '../../../../../storage/LocalStorage'
+import { IHeaderRightSaveButton } from '../interfaces/AddProductsInterfaces'
 
-const HeaderRightSaveButton = () => {
+const HeaderRightSaveButton = ({ navigation = null }: IHeaderRightSaveButton) => {
 
     const inventoryContext = useContext(InventoryContext)
     const showSaveButton = inventoryContext?.newProducts.length ?? 0 >= 1
@@ -24,6 +25,7 @@ const HeaderRightSaveButton = () => {
         setTimeout(() => {
             inventoryContext?.setSuccessShowModal(false)
             inventoryContext?.setNewProducts([])
+            navigation.goBack(null)
         }, 5000)
     }
 

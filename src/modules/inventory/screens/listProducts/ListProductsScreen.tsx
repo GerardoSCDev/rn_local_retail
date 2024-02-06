@@ -6,16 +6,18 @@ import { InventoryContext } from "../../context/InventoryContext"
 import { ListProductStyles } from "./styles/ListProductsStyles"
 import ProductCell from "./components/ProductCell"
 import ListProductsEmpty from "./components/ListProductsEmpty"
+import { useNavigationState } from "@react-navigation/native"
 
 const ListProductsScreen = () => {
+
+    const state = useNavigationState(state => state)
+
     const { areaListView, containerListProduct } = ListProductStyles
     const inventoryContext = useContext(InventoryContext)
 
     useEffect(() => {
-
         getData()
-
-    }, [])
+    }, [state])
 
     const getData = async () => {
         const localStorage = new LocalStorage()
